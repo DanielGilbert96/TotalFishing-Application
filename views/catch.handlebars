@@ -1,0 +1,55 @@
+<style type="text/css">
+  #map{ width:700px; height: 500px; }
+</style>
+<form method="post" action="/users/catch">
+  <div class="form-group">
+    <label for="specie">Specie Name</label>
+    <input type="text" class="form-control" id="specie" placeholder="Enter specie name">
+  </div>
+    <div class="form-group">
+      <label for="weight">Fish Weight</label>
+      <input type="text" class="form-control" id="weight" placeholder="Enter fish weight">
+    </div>
+  <div class="form-group">
+    <label for="method">Method Of Catch</label>
+    <select class="form-control" id="method">
+      <option>Lures</option>
+      <option>Bait</option>
+      <option>Fly</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="description">Description (optional)</label>
+    <textarea class="form-control" id="description" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="picture">Picture of Catch</label>
+    <input type="file" class="form-control-file" id="picture" name="picture" aria-describedby="fileHelp">
+      </div>
+      <div class="form-group">
+        <label for="Location">Location of Catch</label>
+        <div class="map-responsive">
+        <div id="map"></div>
+        </div>
+        <h2>Chosen Location</h2>
+        <form method="post">
+            <input type="text" id="lat" readonly="yes"><br>
+            <input type="text" id="lng" readonly="yes"><br><br>
+          </div>
+  <fieldset class="form-group">
+    <legend>Radio buttons</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" id="public" value="private" checked>
+        Post To Public
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" id="private" value="private">
+        Keep Private
+      </label>
+    </div>
+  </fieldset>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
