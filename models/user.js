@@ -17,28 +17,10 @@ var UserSchema = mongoose.Schema({
 		type: String
 	}
 });
-// Catch Schema
-var CatchSchema = mongoose.Schema({
-	specie: {
-		type: String,
-		index:true
-	},
-	weight: {
-		type: String
-	},
-	method: {
-		type: String
-	},
-	description: {
-		type: String
-	},
-	options: {
-		type: String
-	}
-});
+
 
 var User = module.exports = mongoose.model('User', UserSchema);
-var Catch = module.exports = mongoose.model('Catch', CatchSchema);
+
 
 module.exports.createUser = function(newUser, callback){
 	bcrypt.genSalt(10, function(err, salt) {

@@ -9,6 +9,10 @@ router.get('/', ensureAuthenticated, function(req, res){
 router.get('/catch', ensureAuthenticated, function(req, res){
 	res.render('catch');
 });
+// Get Image Recognition Page
+router.get('/imageRec', ensureAuthenticated, function(req, res){
+	res.render('imageRecognition');
+});
 // Get Best day Page
 router.get('/bestDay', ensureAuthenticated, function(req, res){
 	res.render('patternPredictor');
