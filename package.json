@@ -25,6 +25,8 @@
     "mongoose": "*",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "multer": "*",
+    "request": "*"
   }
 }
