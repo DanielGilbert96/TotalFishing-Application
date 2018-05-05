@@ -41,28 +41,28 @@ router.get('/bestDay', ensureAuthenticated, function(req, res) {
 
 // Get Best day Page
 router.get('/tench', ensureAuthenticated, function(req, res) {
-    res.render('tench');
+  res.render('tench');
 });
 // Get Best day Page
 router.get('/pike', ensureAuthenticated, function(req, res) {
-	res.render('pike');
+  res.render('pike');
 });
 // Get Best day Page
 router.get('/carp', ensureAuthenticated, function(req, res) {
-	res.render('carp');
+  res.render('carp');
 });
 // Get Best day Page
 router.get('/perch', ensureAuthenticated, function(req, res) {
-	res.render('perch');
+  res.render('perch');
 });
 // Get Best day Page
 router.get('/roach', ensureAuthenticated, function(req, res) {
-	res.render('roach');
+  res.render('roach');
 });
 
 // Get Best day Page
 router.get('/trout', ensureAuthenticated, function(req, res) {
-	res.render('trout');
+  res.render('trout');
 });
 
 router.post('/upload', type, function(req, res, next) {
@@ -78,27 +78,26 @@ router.post('/upload', type, function(req, res, next) {
         //console.log(chunk);
         var jsonString = chunk.toString('utf8');
         var json = JSON.parse(jsonString);
-				console.log(json.predictions);
-         if (jsonString.includes("tench")) {
-           res.redirect('/tench');
-         }
-         else if (jsonString.includes("carp")) {
-           res.redirect('/carp');
-         }
-         else if (jsonString.includes("pike")) {
-           res.redirect('/pike');
-         }
-         else if (jsonString.includes("roach")) {
-           res.redirect('/roach');
-         }
-         else if (jsonString.includes("perch")) {
-           res.redirect('/perch');
-         }
-         else if (jsonString.includes("trout")) {
-           res.redirect('/trout');
-         }
+        console.log(json.predictions);
+        if (jsonString.includes("tench")) {
+          res.redirect('/tench');
+        } else if (jsonString.includes("carp")) {
+          res.redirect('/carp');
+        } else if (jsonString.includes("pike")) {
+          res.redirect('/pike');
+        } else if (jsonString.includes("roach")) {
+          res.redirect('/roach');
+        } else if (jsonString.includes("perch")) {
+          res.redirect('/perch');
+        } else if (jsonString.includes("trout")) {
+          res.redirect('/trout');
+        }
 
       })
+      fs.unlink(file, (err) => {
+        if (err) throw err;
+        console.log('file deleted');
+      });
     })
     .on('error', function(err) {
       console.log(err);
