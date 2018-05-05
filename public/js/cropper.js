@@ -6,7 +6,6 @@ img_h = document.querySelector('.img-h'),
 options = document.querySelector('.options'),
 save = document.querySelector('.save'),
 cropped = document.querySelector('.cropped'),
-upped = document.querySelector('.upped'),
 dwn = document.querySelector('.download'),
 recognise = document.querySelector('.recognise'),
 upload = document.querySelector('#file-input'),
@@ -51,9 +50,7 @@ save.addEventListener('click',(e)=>{
 	// show image cropped
   cropped.src = imgSrc;
   dwn.classList.remove('hide');
-  recognise.classList.remove('hide');
   dwn.download = 'fish.png';
   dwn.setAttribute('href',imgSrc);
-  upped.setAttribute('src',imgSrc);
 
 });

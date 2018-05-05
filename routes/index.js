@@ -79,17 +79,22 @@ router.post('/upload', type, function(req, res, next) {
         var jsonString = chunk.toString('utf8');
         var json = JSON.parse(jsonString);
 				console.log(json.predictions);
-         if (jsonString.indexOf("tench")) {
+         if (jsonString.includes("tench")) {
            res.redirect('/tench');
-         } else if (jsonString.indexOf("carp")) {
+         }
+         else if (jsonString.includes("carp")) {
            res.redirect('/carp');
-         } else if (jsonString.indexOf("pike")) {
+         }
+         else if (jsonString.includes("pike")) {
            res.redirect('/pike');
-         } else if (jsonString.indexOf("roach")) {
+         }
+         else if (jsonString.includes("roach")) {
            res.redirect('/roach');
-         } else if (jsonString.indexOf("perch")) {
+         }
+         else if (jsonString.includes("perch")) {
            res.redirect('/perch');
-         } else if (jsonString.indexOf("trout")) {
+         }
+         else if (jsonString.includes("trout")) {
            res.redirect('/trout');
          }
 
