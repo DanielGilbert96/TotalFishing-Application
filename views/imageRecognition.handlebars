@@ -1,20 +1,23 @@
-<h2 class="page-header">Specie Recognition</h2>
-<p>Upload an image of your fish, crop it to fit the fish and upload!</p>
+<h2 class="page-header text-center">Specie Recognition</h2>
+<p class="text-center">Upload an image of your fish, crop it to fit the fish and upload!</p>
 <!-- input file -->
 <div class="box">
-  <input type="file" id="file-input">
+  <div class="custom-file">
+    <input type="file" id="file-input" class="custom-file-input">
+    <label for="file" class="custom-file-label">Choose file...</label>
+  </div>
 </div>
-<!-- leftbox -->
+<!-- original pic -->
 <div class="container">
   <div class="result"></div>
 </div>
-<!--rightbox-->
-<div class="container img-result hide">
+<!--cropped image result-->
+<div class="container img-result hide text-center mt-3">
   <!-- result of crop -->
   <img class="cropped" src="" alt="">
 </div>
 <!-- input file -->
-<div class="box">
+<div class="box text-center">
   <div class="options hide">
     <label> Width</label>
     <input type="number" class="img-w" value="300" min="100" max="1200" />
@@ -26,7 +29,10 @@
 
   <h3 class="page-header">Upload your cropped picture!</h3>
   <form action="/upload" method="post" , enctype="multipart/form-data">
-    <input type="file" name="file" alt="" />
-    <input class="btn-cropper btn-info" type="submit" value="Submit">
+    <div class="custom-file">
+      <input type="file" name="file" id="file" class="custom-file-input">
+      <label for="file" class="custom-file-label">Choose file...</label>
+    </div>
+    <input class="btn-cropper btn-info btn-block" type="submit" value="Submit">
   </form>
 </div>
