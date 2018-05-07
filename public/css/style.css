@@ -56,6 +56,9 @@ body {
   align-content: center;
 }
 
+.weather-icon{
+  padding-top: 1.5em;
+}
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
