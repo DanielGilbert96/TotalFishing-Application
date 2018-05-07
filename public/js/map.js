@@ -8,53 +8,63 @@ var marker = false; ////Has the user plotted their location marker?
 //This is called when the page has loaded.
 function initMap() {
 
-    //The center location of our map.
-    var centerOfMap = new google.maps.LatLng(52.357971, -6.516758);
+  //The center location of our map.
+  var centerOfMap = new google.maps.LatLng(52.357971, -6.516758);
 
-    //Map options.
-    var options = {
-      center: centerOfMap, //Set center.
-      zoom: 7 //The zoom value.
-    };
+  //Map options.
+  var options = {
+    center: centerOfMap, //Set center.
+    zoom: 7 //The zoom value.
+  };
 
-    //Create the map object.
-    map = new google.maps.Map(document.getElementById('map'), options);
+  //Create the map object.
+  map = new google.maps.Map(document.getElementById('map'), options);
 
-    //Listen for any clicks on the map.
-    google.maps.event.addListener(map, 'click', function(event) {
-        //Get the location that the user clicked.
-        var clickedLocation = event.latLng;
-        //If the marker hasn't been added.
-        if(marker === false){
-            //Create the marker.
-            marker = new google.maps.Marker({
-                position: clickedLocation,
-                map: map,
-                draggable: true //make it draggable
-            });
-            //Listen for drag events!
-            google.maps.event.addListener(marker, 'dragend', function(event){
-                markerLocation();
-            });
-        } else{
-            //Marker has already been added, so just change its location.
-            marker.setPosition(clickedLocation);
-        }
-        //Get the marker's location.
+  //Listen for any clicks on the map.
+  google.maps.event.addListener(map, 'click', function(event) {
+    //Get the location that the user clicked.
+    var clickedLocation = event.latLng;
+    //If the marker hasn't been added.
+    if (marker === false) {
+      //Create the marker.
+      marker = new google.maps.Marker({
+        position: clickedLocation,
+        map: map,
+        draggable: true //make it draggable
+      });
+      //Listen for drag events!
+      google.maps.event.addListener(marker, 'dragend', function(event) {
         markerLocation();
-    });
+      });
+    } else {
+      //Marker has already been added, so just change its location.
+      marker.setPosition(clickedLocation);
+    }
+    getReverseGeocodingData();
+  });
 }
 
-//This function will get the marker's current location and then add the lat/long
-//values to our textfields so that we can save the location.
-function markerLocation(){
-    //Get location.
-    var currentLocation = marker.getPosition();
-    //Add lat and lng values to a field that we can save.
-    document.getElementById('lat').value = currentLocation.lat(); //latitude
-    document.getElementById('lng').value = currentLocation.lng(); //longitude
-}
 
+function getReverseGeocodingData(lat, lng) {
+
+  var currentLocation = marker.getPosition();
+    var latlng = new google.maps.LatLng(currentLocation.lat(), currentLocation.lng());
+  // This is making the Geocode request
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({
+    'latLng': latlng
+  }, function(results, status) {
+    if (status !== google.maps.GeocoderStatus.OK) {
+      alert(status);
+    }
+    // This is checking to see if the Geoeode Status is OK before proceeding
+    if (status == google.maps.GeocoderStatus.OK) {
+      console.log(results[1].formatted_address);
+      var address = (results[1].formatted_address);
+      document.getElementById('location').value = address;
+    }
+  });
+}
 
 //Load the map when the page has finished loading.
 google.maps.event.addDomListener(window, 'load', initMap);

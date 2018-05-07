@@ -27,6 +27,10 @@
     "passport-http": "*",
     "passport-local": "*",
     "multer": "*",
-    "request": "*"
+    "request": "*",
+    "gridfs-stream": "*",
+    "multer-gridfs-storage": "*",
+    "method-override": "*",
+    "crypto": "*"
   }
 }

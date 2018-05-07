@@ -1,10 +1,14 @@
 var express = require('express');
 const https = require('https');
+var bodyParser = require('body-parser');
 var router = express.Router();
-var request = require('request')
-var http = require('http')
-var multer = require('multer')
-var fs = require('fs')
+var request = require('request');
+var http = require('http');
+var multer = require('multer');
+var GridFsStorage = require('multer-gridfs-storage');
+var Grid = require('gridfs-stream');
+var methodOverride = require('method-override');
+var fs = require('fs');
 var upload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
@@ -20,20 +24,24 @@ var upload = multer({
 });
 var type = upload.single('file')
 
+
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res) {
   res.render('index', {
     username: req.user.username
   });
 });
+
 // Get Post Catch Page
 router.get('/catch', ensureAuthenticated, function(req, res) {
   res.render('catch');
 });
+
 // Get Image Recognition Page
 router.get('/imageRec', ensureAuthenticated, function(req, res) {
   res.render('imageRecognition');
 });
+
 // Get Best day Page
 router.get('/bestDay', ensureAuthenticated, function(req, res) {
   res.render('patternPredictor');
@@ -43,18 +51,22 @@ router.get('/bestDay', ensureAuthenticated, function(req, res) {
 router.get('/tench', ensureAuthenticated, function(req, res) {
   res.render('tench');
 });
+
 // Get Best day Page
 router.get('/pike', ensureAuthenticated, function(req, res) {
   res.render('pike');
 });
+
 // Get Best day Page
 router.get('/carp', ensureAuthenticated, function(req, res) {
   res.render('carp');
 });
+
 // Get Best day Page
 router.get('/perch', ensureAuthenticated, function(req, res) {
   res.render('perch');
 });
+
 // Get Best day Page
 router.get('/roach', ensureAuthenticated, function(req, res) {
   res.render('roach');
@@ -65,6 +77,7 @@ router.get('/trout', ensureAuthenticated, function(req, res) {
   res.render('trout');
 });
 
+// Upload Image and send binary post request to image classification API
 router.post('/upload', type, function(req, res, next) {
   // console.log(req.file.path);
   // console.log(req.file.mimetype);
@@ -102,13 +115,6 @@ router.post('/upload', type, function(req, res, next) {
     .on('error', function(err) {
       console.log(err);
     }));
-
-  // fs.createReadStream(file).pipe(request.post('http://127.0.0.1:5000/classify'));
-
-  // var path = req.file.path+'.jpg';
-  // res.setHeader('Content-Type', req.file.mimetype)
-  // fs.createReadStream(path.join(req.file.path, req.params.id)).pipe(res)
-
 });
 
 

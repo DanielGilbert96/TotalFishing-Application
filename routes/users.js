@@ -85,46 +85,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-router.post('/catch', function(req, res){
-	var specie = req.body.specie;
-	var weight = req.body.weight;
-	var method = req.body.method;
-	var description = req.body.description;
-	var picture = req.body.picture;
-	var options = req.body.optionsRadios;
 
-
-		// Validation
-		req.checkBody('specie', 'specie is required').notEmpty();
-		req.checkBody('weight', 'weight is required').notEmpty();
-		req.checkBody('method', 'method is required').notEmpty();
-		req.checkBody('picture', 'picture is required').notEmpty();
-
-		var errors = req.validationErrors();
-
-		if(errors){
-			res.render('catch',{
-				errors:errors
-			});
-		} else {
-			var newCatch = new Catch({
-				specie: specie,
-				weight:weight,
-				method: method,
-				description: description,
-				options:options
-			});
-
-			Catch.createCatch(newCatch, function(err, catch2){
-				if(err) throw err;
-				console.log(catch2);
-			});
-
-			req.flash('success_msg', 'You have submitted your catch!');
-
-			res.redirect('/');
-		}
-	});
 router.post('/login',
   passport.authenticate('local', {successRedirect:'/', failureRedirect:'/users/login',failureFlash: true}),
   function(req, res) {
