@@ -11,12 +11,14 @@ function getWeatherData(city) {
       q: city,
       appid: key,
       units: "metric",
-      cnt: "10"
+      cnt: 40
     },
     success: function(data) {
       console.log('Received data:', data) // For testing
       var wf = "";
       $.each(data.list, function(index, val) {
+        if(index==0||index==8||index==16||index==24||index==32)
+        {
         wf += "<div class='col-lg-6'>"
         wf += "<div class='card border-0 box-shadow-0'>"
           wf += "<div class='card-content'>"
@@ -54,6 +56,26 @@ function getWeatherData(city) {
                         wf += "</div>"
                       wf += "</td>"
                     wf += "</tr>"
+                      wf += "<tr>"
+                        wf += "<td>"
+                          wf += "<div class='details-left float-left'>"
+                            wf += "<span class='font-small-1 grey text-bold-600 block'>WIND DIRECTION</span>"
+                            wf += "<span class='text-bold-500'>" + val.wind.deg + "</span>"
+                          wf += "</div>"
+                          wf += "<div class='float-right align-middle'>"
+                            wf += "<i class='me-wind grey lighten-1 font-large-1'></i>"
+                          wf += "</div>"
+                        wf += "</td>"
+                        wf += "<td>"
+                          wf += "<div class='details-left float-left'>"
+                            wf += "<span class='font-small-1 grey text-bold-600 block'>DATE</span>"
+                            wf += "<span class='text-bold-500'>" + val.dt_txt + "</span>"
+                          wf += "</div>"
+                          wf += "<div class='float-right align-middle'>"
+                            wf += "<i class='me-thermometer grey lighten-1 font-large-1'></i>"
+                          wf += "</div>"
+                        wf += "</td>"
+                      wf += "</tr>"
                   wf += "</tbody>"
                 wf += "</table>"
               wf += "</div>"
@@ -61,6 +83,7 @@ function getWeatherData(city) {
           wf += "</div>"
         wf += "</div>"
         wf += "</div>"
+      }
       });
       $("#showWeatherForcast").html(wf);
     }

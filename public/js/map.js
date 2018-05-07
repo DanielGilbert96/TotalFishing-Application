@@ -48,7 +48,7 @@ function initMap() {
 function getReverseGeocodingData(lat, lng) {
 
   var currentLocation = marker.getPosition();
-    var latlng = new google.maps.LatLng(currentLocation.lat(), currentLocation.lng());
+  var latlng = new google.maps.LatLng(currentLocation.lat(), currentLocation.lng());
   // This is making the Geocode request
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode({
@@ -59,9 +59,11 @@ function getReverseGeocodingData(lat, lng) {
     }
     // This is checking to see if the Geoeode Status is OK before proceeding
     if (status == google.maps.GeocoderStatus.OK) {
-      console.log(results[1].formatted_address);
       var address = (results[1].formatted_address);
+      var city = (results[0].address_components[2].long_name).replace("Co.","").replace("County","");
+      console.log(city);
       document.getElementById('location').value = address;
+      document.getElementById('city').value = city;
     }
   });
 }

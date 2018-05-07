@@ -23,12 +23,19 @@ var upload = multer({
   })
 });
 var type = upload.single('file')
-
+var Post = require('../models/post');
 
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res) {
   res.render('index', {
     username: req.user.username
+  });
+});
+
+// Get PostList
+router.get('/postList', ensureAuthenticated, function(req, res) {
+  Post.find({}, function(err, posts) {
+    res.json(posts);
   });
 });
 
@@ -93,17 +100,41 @@ router.post('/upload', type, function(req, res, next) {
         var json = JSON.parse(jsonString);
         console.log(json.predictions);
         if (jsonString.includes("tench")) {
-          res.redirect('/tench');
+          var accuracy = json.predictions.tench.toFixed(2).toString();
+          accuracy = accuracy.replace("0.","");
+          res.render('tench', {
+          accuracy: accuracy
+        });
         } else if (jsonString.includes("carp")) {
-          res.redirect('/carp');
+          var accuracy = json.predictions.carp.toFixed(2).toString();
+          accuracy = accuracy.replace("0.","");
+          res.render('carp', {
+          accuracy: accuracy
+        });
         } else if (jsonString.includes("pike")) {
-          res.redirect('/pike');
+          var accuracy = json.predictions.pike.toFixed(2).toString();
+          accuracy = accuracy.replace("0.","");
+          res.render('pike', {
+            accuracy: accuracy
+          });
         } else if (jsonString.includes("roach")) {
-          res.redirect('/roach');
+          var accuracy = json.predictions.roach.toFixed(2).toString();
+          accuracy = accuracy.replace("0.","");
+          res.render('roach', {
+          accuracy: accuracy
+        });
         } else if (jsonString.includes("perch")) {
-          res.redirect('/perch');
+          var accuracy = json.predictions.perch.toFixed(2).toString();
+          accuracy = accuracy.replace("0.","");
+          res.render('perch', {
+          accuracy: accuracy
+        });
         } else if (jsonString.includes("trout")) {
-          res.redirect('/trout');
+          var accuracy = json.predictions.trout.toFixed(2).toString();
+          accuracy = accuracy.replace("0.","");
+          res.render('trout', {
+          accuracy: accuracy
+        });
         }
 
       })

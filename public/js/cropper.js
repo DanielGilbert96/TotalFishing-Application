@@ -51,7 +51,7 @@ save.addEventListener('click',(e)=>{
 	// show image cropped
   cropped.src = imgSrc;
   dwn.classList.remove('hide');
-  dwn.download = 'fish.png';
+  dwn.download = 'fish'+Math.floor(Math.random() * 928273884) + 3838459+ '.png';
   dwn.setAttribute('href',imgSrc);
 
 });

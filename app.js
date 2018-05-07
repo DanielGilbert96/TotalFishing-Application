@@ -213,6 +213,7 @@ app.post('/post', type, function(req, res) {
   var description = req.body.description;
   var location = req.body.location;
   var privacy = req.body.privacy;
+  var id = Math.floor((Math.random() * 999999999) + 1);
 
 
   // Validation
@@ -222,8 +223,6 @@ app.post('/post', type, function(req, res) {
   req.checkBody('method', 'method is required').notEmpty();
 
   var errors = req.validationErrors();
-
-console.log(errors);
 
   if (errors) {
     res.render('catch', {
@@ -238,6 +237,8 @@ console.log(errors);
       img_name: req.file.filename,
       location: location,
       privacy: privacy,
+      likes: 0,
+      id: Math.floor((Math.random() * 100) + 1)
     });
 
     Post.createPost(newPost, function(err, post) {

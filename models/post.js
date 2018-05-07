@@ -3,6 +3,9 @@ var bcrypt = require('bcryptjs');
 
 // Post Schema
 var PostSchema = mongoose.Schema({
+	creator: {
+		type: mongoose.Schema.Types.ObjectId, ref: 'User'
+	},
 	specie: {
 		type: String
 	},
@@ -24,6 +27,13 @@ var PostSchema = mongoose.Schema({
 	privacy: {
 		type: Boolean
 	},
+	likes: {
+		type: Number
+	},
+	comments: [{
+		type: String
+	}]
+
 });
 
 
