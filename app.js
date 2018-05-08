@@ -148,7 +148,8 @@ app.get('/files', (req, res) => {
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
-  defaultLayout: 'layout'
+  defaultLayout: 'layout',
+  helpers: require('./config/handlebars-helpers'),
 }));
 app.set('view engine', 'handlebars');
 
@@ -230,6 +231,7 @@ app.post('/post', type, function(req, res) {
     });
   } else {
     var newPost = new Post({
+      creator: req.user.name,
       specie: specie,
       weight: weight,
       method: method,

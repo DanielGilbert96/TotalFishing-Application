@@ -4095,8 +4095,7 @@ input[type='date'].form-control, input[type='time'].form-control, input[type='da
     }
 } */
 .input-group-addon {
-  padding-top : 0.2rem;
-  padding-bottom : 0.2rem;
+  padding : 6px 12px;
 }
 
 .floating-label-form-group-with-focus label, .floating-label-form-group-with-value label {
