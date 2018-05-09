@@ -22,7 +22,7 @@ var pdb = new MongoPortable("TotalFishing");
 var users = pdb.collection("users");
 
 //MongoDB Connection
-mongourl = 'mongodb://localhost/TotalFishing';
+mongourl = 'mongodb://dangil:12345qwerty@ds119160.mlab.com:19160/total-fishing';
 mongoose.connect(mongourl);
 var db = mongoose.connection;
 // Create mongo connection
