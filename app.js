@@ -15,6 +15,10 @@ const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
 const crypto = require('crypto');
+var fs = require('fs');
+const https = require('https');
+const http = require('http');
+var request = require('request');
 
 //Portable mongodb
 var MongoPortable = require("mongo-portable").MongoPortable;
@@ -248,12 +252,101 @@ app.post('/post', type, function(req, res) {
       console.log(post);
     });
 
-  req.flash('success_msg', 'Post Submitted Succesfully');
+    req.flash('success_msg', 'Post Submitted Succesfully');
 
 
-  res.redirect('/catch');
+    res.redirect('/catch');
   }
 });
+
+// Upload Image and send binary post request to image classification API
+app.post('/upload', type, function(req, res, next) {
+
+  // console.log(req.file.mimetype);
+  var file = req.file.filename;
+  gfs.files.findOne({ filename: req.file.filename}, function (err, file) {
+    console.log(file);
+    if (err) {
+      console.log(err);
+    }
+      var readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(request
+        .post("http://18.236.193.155/classify")
+        .on('response', function(response) {
+          response.setEncoding("UTF-8");
+          response.on('data', function(data) {
+            console.log(data);
+            var jsonString = data.toString('utf8');
+            if (jsonString.includes("tench")) {
+              var json = JSON.parse(jsonString);
+              var accuracy = json.predictions.tench;
+              accuracy = Math.floor(accuracy* 100)
+              accuracy = accuracy.toString().replace("0.", "");
+              res.render('tench', {
+                accuracy: accuracy
+              });
+            } else if (jsonString.includes("carp")) {
+              var json = JSON.parse(jsonString);
+              var accuracy = json.predictions.carp;
+              accuracy = Math.floor(accuracy* 100)
+              accuracy = accuracy.toString().replace("0.", "");
+              res.render('carp', {
+                accuracy: accuracy
+              });
+            } else if (jsonString.includes("pike")) {
+              var json = JSON.parse(jsonString);
+              var accuracy = json.predictions.pike;
+              accuracy = Math.floor(accuracy* 100)
+              accuracy = accuracy.toString().replace("0.", "");
+              res.render('pike', {
+                accuracy: accuracy
+              });
+            } else if (jsonString.includes("roach")) {
+              var json = JSON.parse(jsonString);
+              var accuracy = json.predictions.roach;
+              accuracy = Math.floor(accuracy* 100)
+              accuracy = accuracy.toString().replace("0.", "");
+              res.render('roach', {
+                accuracy: accuracy
+              });
+            } else if (jsonString.includes("perch")) {
+              var json = JSON.parse(jsonString);
+              var accuracy = json.predictions.perch;
+              accuracy = Math.floor(accuracy* 100)
+              accuracy = accuracy.toString().replace("0.", "");
+              res.render('perch', {
+                accuracy: accuracy
+              });
+            } else if (jsonString.includes("bream")) {
+              var json = JSON.parse(jsonString);
+              var accuracy = json.predictions.trout;
+              accuracy = Math.floor(accuracy* 100)
+              accuracy = accuracy.toString().replace("0.", "");
+              res.render('bream', {
+                accuracy: accuracy
+              });
+            } else if (jsonString.includes("trout")) {
+              var json = JSON.parse(jsonString);
+              var accuracy = json.predictions.trout;
+              accuracy = Math.floor(accuracy* 100)
+              accuracy = accuracy.toString().replace("0.", "");
+              res.render('trout', {
+                accuracy: accuracy
+              });
+            }else {
+              req.flash('error_msg', 'Something went wrong!');
+              res.redirect("/");
+            }
+
+          })
+        })
+        .on('error', function(err) {
+          console.log(err);
+        }));
+
+      });
+    });
+
 
 
 
