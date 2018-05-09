@@ -130,37 +130,42 @@ router.get('/imageRec', ensureAuthenticated, function(req, res) {
   res.render('imageRecognition');
 });
 
-// Get Best day Page
+// Get best day page
 router.get('/bestDay', ensureAuthenticated, function(req, res) {
   res.render('patternPredictor');
 });
 
-// Get Best day Page
+// Get tench page
 router.get('/tench', ensureAuthenticated, function(req, res) {
   res.render('tench');
 });
 
-// Get Best day Page
+// Get pike page
 router.get('/pike', ensureAuthenticated, function(req, res) {
   res.render('pike');
 });
 
-// Get Best day Page
+// Get carp page
 router.get('/carp', ensureAuthenticated, function(req, res) {
   res.render('carp');
 });
 
-// Get Best day Page
+// Get perch page
 router.get('/perch', ensureAuthenticated, function(req, res) {
   res.render('perch');
 });
 
-// Get Best day Page
+// Get roach page
 router.get('/roach', ensureAuthenticated, function(req, res) {
   res.render('roach');
 });
 
-// Get Best day Page
+// Get bream page
+router.get('/bream', ensureAuthenticated, function(req, res) {
+  res.render('bream');
+});
+
+// Get trout page
 router.get('/trout', ensureAuthenticated, function(req, res) {
   res.render('trout');
 });
@@ -208,6 +213,12 @@ router.post('/upload', type, function(req, res, next) {
           var accuracy = json.predictions.perch.toFixed(2).toString();
           accuracy = accuracy.replace("0.", "");
           res.render('perch', {
+            accuracy: accuracy
+          });
+        } else if (jsonString.includes("bream")) {
+          var accuracy = json.predictions.trout.toFixed(2).toString();
+          accuracy = accuracy.replace("0.", "");
+          res.render('bream', {
             accuracy: accuracy
           });
         } else if (jsonString.includes("trout")) {
