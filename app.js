@@ -319,7 +319,7 @@ app.post('/upload', type, function(req, res, next) {
               });
             } else if (jsonString.includes("bream")) {
               var json = JSON.parse(jsonString);
-              var accuracy = json.predictions.trout;
+              var accuracy = json.predictions.bream;
               accuracy = Math.floor(accuracy* 100)
               accuracy = accuracy.toString().replace("0.", "");
               res.render('bream', {
