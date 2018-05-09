@@ -172,7 +172,7 @@ router.post('/upload', type, function(req, res, next) {
   var file = req.file.path;
   var source = fs.createReadStream(file)
   source.pipe(request
-    .post("http://localhost:5000/classify")
+    .post("http://ec2-18-236-193-155.us-west-2.compute.amazonaws.com/classify")
     .on('response', function(response) {
       response.setEncoding("UTF-8");
       response.once("data", function(chunk) {
