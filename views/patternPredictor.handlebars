@@ -1,19 +1,16 @@
+<h1 class="text-center">Select a location!</h1>
 
+<p class="text-center">Click the location on the map that you are planning to fish! You can also drag the marker to change location.</p>
 
-<h1>Select a location!</h1>
-       <p>Click on a location on the map to select it. Drag the marker to change location.</p>
+<div class="map-responsive">
+  <div id="map"></div>
+</div>
 
-         <label for="Location">Location where you would like to fish</label>
+<input type="text" id="location" name="location" class="form-control" placeholder="Your location">
+<input type="text" id="city" name="city" class="form-control hide" placeholder="Your location">
 
-         <div class="map-responsive">
-           <div id="map"></div>
-         </div>
+<button class="btn-cropper btn-info btn-block" onclick="getWeatherData(document.getElementById('city').value)">Find Best Day To Fish</button>
+<br />
+<div class="row" id="showWeatherForcast">
 
-         <input type="text" id="location" name="location" class="form-control" placeholder="Your location">
-         <input type="text" id="city" name="city" class="form-control hide" placeholder="Your location">
-
-       <button class="btn-cropper btn-info btn-block" onclick="getWeatherData(document.getElementById('city').value)">Find Best Day To Fish</button>
-       <br />
-       <div class="row"id="showWeatherForcast">
-
-       </div>
+</div>

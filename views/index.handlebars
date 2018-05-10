@@ -1,9 +1,9 @@
 <h2 class="page-header text-center">Dashboard</h2>
-<p class="text-center">Welcome to your dashboard {{username}}</p>
+<p class="text-center">Welcome {{username}}</p>
 <div class="container">
   {{#each posts}}
   {{#ifCond this.privacy '==' true}}
-  <div class="col-sm-12 col-md-10 col-lg-9 offset-md-1 offset-lg-2">
+  <div class="col-sm-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
         <div class="panel panel-white post panel-shadow">
             <div class="post-heading">
                 <div class="pull-left image">

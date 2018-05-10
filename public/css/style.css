@@ -1,46 +1,69 @@
 /* Space out content a bit */
+
 body {
-  padding-top: 20px;
   padding-bottom: 20px;
 }
-/*Map Responsive*/
-#map{
-  left:0;
-  top:0;
-  height:100%;
-  width:100%;
-  position:absolute; }
-  .map-responsive{
-  overflow:hidden;
-  padding-bottom:56.25%;
-  position:relative;
-  height:0;
+
+@media (min-width: 768px) {
+  .nav-link-logout {
+    position: absolute;
+    right: 15px;
   }
+}
+@media (max-width: 500px) {
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+.col-sm-12 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+/*Map Responsive*/
+
+#map {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.map-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
+
+.header, .marketing, .footer {
   padding-right: 15px;
   padding-left: 15px;
 }
 
 /* Custom page header */
+
 .header {
   padding-bottom: 20px;
   border-bottom: 1px solid #e5e5e5;
 }
+
 /* Make the masthead heading the same height as the navigation */
+
 .header h3 {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 40px;
 }
 
-.social-bar{
-
-}
+.social-bar {}
 
 /* Custom page footer */
+
 .footer {
   padding-top: 19px;
   color: #777;
@@ -48,45 +71,50 @@ body {
 }
 
 /* Customize container */
-@media (min-width: 768px) {
-  .container {
 
-  }
+@media (min-width: 768px) {
+  .container {}
 }
-.container-narrow > hr {
+
+.container-narrow>hr {
   margin: 30px 0;
 }
-.box-2{
+
+.box-2 {
   align-content: center;
 }
 
-.weather-icon{
+.weather-icon {
   padding-top: 1.5em;
 }
+
 /* Main marketing message and sign up button */
+
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
+
 .jumbotron .btn {
   padding: 14px 24px;
   font-size: 21px;
 }
 
 /* Supporting marketing content */
+
 .marketing {
   margin: 40px 0;
 }
-.marketing p + h4 {
+
+.marketing p+h4 {
   margin-top: 28px;
 }
 
 /* Responsive: Portrait tablets and up */
+
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
+  .header, .marketing, .footer {
     padding-right: 0;
     padding-left: 0;
   }
@@ -100,26 +128,29 @@ body {
   }
 }
 
-.page-header{
-  margin-top:0;
+.page-header {
+  margin-top: 0;
 }
 
-footer{
-  margin-top:40px;
+footer {
+  margin-top: 40px;
 }
 
 .panel-shadow {
-    box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+  box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
 }
+
 .panel-white {
   border: 1px solid #dddddd;
 }
-.panel-white  .panel-heading {
+
+.panel-white .panel-heading {
   color: #333;
   background-color: #fff;
   border-color: #ddd;
 }
-.panel-white  .panel-footer {
+
+.panel-white .panel-footer {
   background-color: #fff;
   border-color: #ddd;
 }
@@ -128,70 +159,88 @@ footer{
   height: 95px;
   padding: 20px 15px;
 }
+
 .post .post-heading .avatar {
   width: 60px;
   height: 60px;
   display: block;
   margin-right: 15px;
 }
+
 .post .post-heading .meta .title {
   margin-bottom: 0;
 }
+
 .post .post-heading .meta .title a {
   color: black;
 }
+
 .post .post-heading .meta .title a:hover {
   color: #aaaaaa;
 }
+
 .post .post-heading .meta .time {
   margin-top: 8px;
   color: #999;
 }
+
 .post .post-image .image {
   width: 100%;
   height: auto;
 }
+
 .post .post-description {
   padding: 15px;
 }
+
 .post .post-description p {
   font-size: 14px;
 }
+
 .post .post-description .stats {
   margin-top: 20px;
 }
+
 .post .post-description .stats .stat-item {
   display: inline-block;
   margin-right: 15px;
 }
+
 .post .post-description .stats .stat-item .icon {
   margin-right: 8px;
 }
+
 .post .post-footer {
   border-top: 1px solid #ddd;
   padding: 15px;
 }
+
 .post .post-footer .input-group-addon a {
   color: #454545;
 }
+
 .post .post-footer .comments-list {
   padding: 0;
   margin-top: 20px;
   list-style-type: none;
 }
+
 .post .post-footer .comments-list .comment {
   display: block;
   width: 100%;
   margin: 20px 0;
 }
+
 .post .post-footer .comments-list .comment .avatar {
   width: 35px;
   height: 35px;
 }
+
 .post .post-footer .comments-list .comment .comment-heading {
   display: block;
   width: 100%;
 }
+
 .post .post-footer .comments-list .comment .comment-heading .user {
   font-size: 14px;
   font-weight: bold;
@@ -199,21 +248,18 @@ footer{
   margin-top: 0;
   margin-right: 10px;
 }
+
 .post .post-footer .comments-list .comment .comment-heading .time {
   font-size: 12px;
   color: #aaa;
   margin-top: 0;
   display: inline;
 }
+
 .post .post-footer .comments-list .comment .comment-body {
   margin-left: 50px;
 }
-.post .post-footer .comments-list .comment > .comments-list {
-  margin-left: 50px;
-}
-@font-face { font-family: BebasNeue; src: url('../fonts/BebasNeue-Regular.TTF'); }
 
-.page-title {
-  font-family: BebasNeue;
-  font-size: 2rem;
+.post .post-footer .comments-list .comment>.comments-list {
+  margin-left: 50px;
 }

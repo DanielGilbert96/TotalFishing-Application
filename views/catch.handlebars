@@ -1,4 +1,4 @@
-<h2 class="page-header">Post Your Fish!</h2>
+<h2 class="page-header text-center">Information on your catch!</h2>
 {{#if errors}}
       {{#each errors}}
         <div class="alert alert-danger">{{msg}}</div>
@@ -19,7 +19,7 @@
   </div>
   <div class="form-group">
     <label for="weight">Fish Weight</label>
-    <input type="number" class="form-control" name="weight" id="weight" min="0.1" placeholder="Enter fish weight in lbs">
+    <input type="number" class="form-control" name="weight" id="weight" min="0" placeholder="Enter fish weight in lbs">
   </div>
   <div class="form-group">
     <label for="method">Method Of Catch</label>

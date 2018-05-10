@@ -60,7 +60,7 @@ function getReverseGeocodingData(lat, lng) {
     // This is checking to see if the Geoeode Status is OK before proceeding
     if (status == google.maps.GeocoderStatus.OK) {
       var address = (results[1].formatted_address);
-      var city = (results[0].address_components[2].long_name).replace("Co.","").replace("County","");
+      var city = (results[0].address_components[2].long_name).replace("Co. ","").replace("County","").replace("Meath","Navan").replace("Westmeath", "fore");
       console.log(city);
       document.getElementById('location').value = address;
       document.getElementById('city').value = city;

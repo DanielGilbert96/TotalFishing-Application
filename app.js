@@ -20,11 +20,6 @@ const https = require('https');
 const http = require('http');
 var request = require('request');
 
-//Portable mongodb
-var MongoPortable = require("mongo-portable").MongoPortable;
-var pdb = new MongoPortable("TotalFishing");
-var users = pdb.collection("users");
-
 //MongoDB Connection
 mongourl = 'mongodb://dangil:12345qwerty@ds119160.mlab.com:19160/total-fishing';
 mongoose.connect(mongourl);
@@ -235,7 +230,7 @@ app.post('/post', type, function(req, res) {
     });
   } else {
     var newPost = new Post({
-      creator: req.user.name,
+      creator: req.user.username,
       specie: specie,
       weight: weight,
       method: method,
