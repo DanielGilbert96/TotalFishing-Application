@@ -266,7 +266,7 @@ app.post('/upload', type, function(req, res, next) {
     }
       var readstream = gfs.createReadStream(file.filename);
       readstream.pipe(request
-        .post("http://18.236.193.155/classify")
+        .post("http://35.164.132.68/classify")
         .on('response', function(response) {
           response.setEncoding("UTF-8");
           response.on('data', function(data) {

@@ -9,7 +9,7 @@
                 <div class="pull-left image">
                     <img src="https://cdn1.iconfinder.com/data/icons/round-flat-design-scenery/512/scenery-flat-design-circle_lake-sun-256.png" class="img-circle avatar" alt="user profile image">
                 </div>
-            {{#ifCond ../name '==' this.creator}}
+            {{#ifCond ../username '==' this.creator}}
             <div class="float-right inline-block">
               <a href="/deletePost/{{this._id}}" onclick="return confirm('Are you sure you want to delete this post?')" ><i class="fa fa-times-circle"></i></a>
             </div>
