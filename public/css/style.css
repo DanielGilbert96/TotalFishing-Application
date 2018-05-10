@@ -211,3 +211,9 @@ footer{
 .post .post-footer .comments-list .comment > .comments-list {
   margin-left: 50px;
 }
+@font-face { font-family: BebasNeue; src: url('../fonts/BebasNeue-Regular.TTF'); }
+
+.page-title {
+  font-family: BebasNeue;
+  font-size: 2rem;
+}
