@@ -30,9 +30,13 @@
   <h3 class="page-header">Upload your cropped picture!</h3>
   <form action="/upload" method="post" , enctype="multipart/form-data">
     <div class="custom-file">
-      <input type="file" name="file" id="file" class="custom-file-input">
+      <input type="file" name="file" id="file-input1" class="custom-file-input">
       <label for="file" class="custom-file-label">Choose file...</label>
+    </div>
+    <div class="container">
+      <div class="result1"></div>
     </div>
     <input class="btn-cropper btn-info btn-block" type="submit" value="Start Image Recognition">
   </form>
+
 </div>

@@ -44,7 +44,7 @@
 						<a class="nav-link" href="/private">Private Catches</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="bestDay">Best Date Fishing</a>
+						<a class="nav-link" href="bestDay">Best Fishing Date</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="imageRec">Fish Recognition</a>
@@ -70,15 +70,15 @@
 
 		<div class="container">
 			{{#if success_msg}}
-				<div class="alert alert-success">{{success_msg}}</div>
+				<div class="alert alert-success text-center">{{success_msg}}</div>
 			{{/if}}
 
 			{{#if error_msg}}
-				<div class="alert alert-danger">{{error_msg}}</div>
+				<div class="alert alert-danger text-center">{{error_msg}}</div>
 			{{/if}}
 
 			{{#if error}}
-				<div class="alert alert-danger">{{error}}</div>
+				<div class="alert alert-danger text-center">{{error}}</div>
 			{{/if}}
 
 			{{{body}}}

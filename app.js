@@ -277,57 +277,92 @@ app.post('/upload', type, function(req, res, next) {
               var accuracy = json.predictions.tench;
               accuracy = Math.floor(accuracy* 100)
               accuracy = accuracy.toString().replace("0.", "");
-              res.render('tench', {
-                accuracy: accuracy
-              });
+              if (parseInt(accuracy)>60) {
+                res.render('tench', {
+                  accuracy: accuracy
+                });
+              }else {
+                req.flash('error_msg', 'Could recognise specie of fish, please ensure that it is a clear picture of the fish.');
+                res.redirect("/imageRec");
+              }
             } else if (jsonString.includes("carp")) {
               var json = JSON.parse(jsonString);
               var accuracy = json.predictions.carp;
               accuracy = Math.floor(accuracy* 100)
               accuracy = accuracy.toString().replace("0.", "");
-              res.render('carp', {
-                accuracy: accuracy
-              });
+              if (parseInt(accuracy)>60) {
+                res.render('carp', {
+                  accuracy: accuracy
+                });
+              }else {
+                req.flash('error_msg', 'Could recognise specie of fish, please ensure that it is a clear picture of the fish.');
+                res.redirect("/imageRec");
+              }
             } else if (jsonString.includes("pike")) {
               var json = JSON.parse(jsonString);
               var accuracy = json.predictions.pike;
               accuracy = Math.floor(accuracy* 100)
               accuracy = accuracy.toString().replace("0.", "");
-              res.render('pike', {
-                accuracy: accuracy
-              });
+              if (parseInt(accuracy)>60) {
+                res.render('pike', {
+                  accuracy: accuracy
+                });
+              }else {
+                req.flash('error_msg', 'Could recognise specie of fish, please ensure that it is a clear picture of the fish.');
+                res.redirect("/imageRec");
+              }
             } else if (jsonString.includes("roach")) {
               var json = JSON.parse(jsonString);
               var accuracy = json.predictions.roach;
               accuracy = Math.floor(accuracy* 100)
               accuracy = accuracy.toString().replace("0.", "");
-              res.render('roach', {
-                accuracy: accuracy
-              });
+              if (parseInt(accuracy)>60) {
+                res.render('roach', {
+                  accuracy: accuracy
+                });
+              }else {
+                req.flash('error_msg', 'Could recognise specie of fish, please ensure that it is a clear picture of the fish.');
+                res.redirect("/imageRec");
+              }
             } else if (jsonString.includes("perch")) {
               var json = JSON.parse(jsonString);
               var accuracy = json.predictions.perch;
               accuracy = Math.floor(accuracy* 100)
               accuracy = accuracy.toString().replace("0.", "");
-              res.render('perch', {
-                accuracy: accuracy
-              });
+              if (parseInt(accuracy)>60) {
+                res.render('perch', {
+                  accuracy: accuracy
+                });
+              }else {
+                req.flash('error_msg', 'Could recognise specie of fish, please ensure that it is a clear picture of the fish.');
+                res.redirect("/imageRec");
+              }
             } else if (jsonString.includes("bream")) {
               var json = JSON.parse(jsonString);
               var accuracy = json.predictions.bream;
               accuracy = Math.floor(accuracy* 100)
               accuracy = accuracy.toString().replace("0.", "");
-              res.render('bream', {
-                accuracy: accuracy
-              });
+              if (parseInt(accuracy)>60) {
+                res.render('bream', {
+                  accuracy: accuracy
+                });
+              }else {
+                req.flash('error_msg', 'Could recognise specie of fish, please ensure that it is a clear picture of the fish.');
+                res.redirect("/imageRec");
+              }
             } else if (jsonString.includes("trout")) {
               var json = JSON.parse(jsonString);
               var accuracy = json.predictions.trout;
               accuracy = Math.floor(accuracy* 100)
               accuracy = accuracy.toString().replace("0.", "");
-              res.render('trout', {
-                accuracy: accuracy
-              });
+              if (parseInt(accuracy)>50) {
+                res.render('trout', {
+                  accuracy: accuracy
+                });
+              }else {
+                req.flash('error_msg', 'Could recognise specie of fish, please ensure that it is a clear picture of the fish.');
+                res.redirect("/imageRec");
+              }
             }else {
               req.flash('error_msg', 'Something went wrong!');
               res.redirect("/");
