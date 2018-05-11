@@ -16,6 +16,13 @@ body {
     padding-right: 0px;
   }
 }
+@media (max-width: 500px) {
+  .image {
+    max-width: 0%;
+    max-height: 0%;
+    visibility: hidden;
+  }
+}
 .col-sm-12 {
   padding-left: 0px;
   padding-right: 0px;

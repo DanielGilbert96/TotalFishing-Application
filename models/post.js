@@ -32,7 +32,8 @@ var PostSchema = mongoose.Schema({
   },
   comments: [{
     body: String,
-    user: String
+    user: String,
+    date: Date
   }]
 
 });
@@ -62,9 +63,11 @@ module.exports.findAndUpdateComments = function(_id, comment, user, callback) {
   var query = {
     _id: _id
   };
+  var date = new Date();
   var comments = {
     "body": comment,
-    "user": user
+    "user": user,
+    "date" : date
   };
   Post.findOneAndUpdate(query, {
     $push: {

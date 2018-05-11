@@ -15,26 +15,6 @@ upload1 = document.querySelector('#file-input1'),
 cropper = '';
 
 // on change show image with crop options
-upload1.addEventListener('change', (d) => {
-  if (d.target.files.length) {
-		// start file reader
-    const reader = new FileReader();
-    reader.onload = (d)=> {
-      if(d.target.result){
-				// create new image
-				let img = document.createElement('img');
-				img.id = 'image';
-				img.src = d.target.result
-				// clean result before
-				result1.innerHTML = '';
-				// append new image
-        result1.appendChild(img);
-      }
-    };
-    reader.readAsDataURL(d.target.files[0]);
-  }
-});
-// on change show image with crop options
 upload.addEventListener('change', (e) => {
   if (e.target.files.length) {
 		// start file reader
@@ -57,6 +37,28 @@ upload.addEventListener('change', (e) => {
       }
     };
     reader.readAsDataURL(e.target.files[0]);
+  }
+});
+
+
+// on change show image with crop options
+upload1.addEventListener('change', (d) => {
+  if (d.target.files.length) {
+		// start file reader
+    const reader = new FileReader();
+    reader.onload = (d)=> {
+      if(d.target.result){
+				// create new image
+				let img = document.createElement('img');
+				img.id = 'image';
+				img.src = d.target.result
+				// clean result before
+				result1.innerHTML = '';
+				// append new image
+        result1.appendChild(img);
+      }
+    };
+    reader.readAsDataURL(d.target.files[0]);
   }
 });
 
