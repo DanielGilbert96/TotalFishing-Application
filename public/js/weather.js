@@ -25,7 +25,11 @@ function getWeatherData(city) {
       $.each(data.list, function(index, val) {
         if (index == 0 || index == 8 || index == 16 || index == 24 || index == 32) {
           var pressure = val.main.pressure;
-          var rain = val.rain["3h"];
+          if (val.rain) {
+            var rain = val.rain["3h"];
+          }else {
+            var rain = null;
+          }
           var temp = val.main.temp;
           var clouds = val.clouds.all;
           var wind = val.wind.speed;
