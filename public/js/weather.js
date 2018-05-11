@@ -197,7 +197,10 @@ function getWeatherData(city) {
           }
 
       }
-    }
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+        alert("Weather api was unable to find location please select another location.");
+      }
 
   });
 }
