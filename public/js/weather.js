@@ -27,12 +27,13 @@ function getWeatherData(city) {
           var pressure = val.main.pressure;
           if (val.rain) {
             var rain = val.rain["3h"];
-          }else {
+          } else {
             var rain = null;
           }
           var temp = val.main.temp;
           var clouds = val.clouds.all;
           var wind = val.wind.speed;
+          var wind_deg = val.wind.deg;
           var totalVal = 0;
 
           if (pressure <= 1000) {
@@ -65,54 +66,90 @@ function getWeatherData(city) {
             totalVal += 7;
           } else if (between(clouds, 60, 70)) {
             totalVal += 10;
-          } else if (clouds>70) {
+          } else if (clouds > 70) {
             totalVal += 15;
           }
 
           if (rain == null || rain == 0) {
             totalVal += 5;
-          }else if (between(rain,0.0001,1)) {
+          } else if (between(rain, 0.0001, 1)) {
             totalVal += 2;
-          }else if (between(rain,1,2)) {
+          } else if (between(rain, 1, 2)) {
             totalVal = totalVal;
-          }else if (between(rain,2,3)) {
-            totalVal = totalVal-10;
-          }else if (rain>3) {
-            totalVal = totalVal-15;
+          } else if (between(rain, 2, 3)) {
+            totalVal = totalVal - 10;
+          } else if (rain > 3) {
+            totalVal = totalVal - 15;
           }
 
-          if (temp<-20) {
-            totalVal = totalVal-20;
-          }else if (between(temp,-20,-10)) {
-            totalVal = totalVal-15;
-          }else if (between(temp,-10,-5)) {
-            totalVal = totalVal-10;
-          }else if (between(temp,-5,0)) {
-            totalVal = totalVal-5;
-          }else if (between(temp,0,5)) {
-            totalVal = totalVal-2;
-          }else if (between(temp,5,10)) {
+          if (temp < -20) {
+            totalVal = totalVal - 20;
+          } else if (between(temp, -20, -10)) {
+            totalVal = totalVal - 15;
+          } else if (between(temp, -10, -5)) {
+            totalVal = totalVal - 10;
+          } else if (between(temp, -5, 0)) {
+            totalVal = totalVal - 5;
+          } else if (between(temp, 0, 5)) {
+            totalVal = totalVal - 2;
+          } else if (between(temp, 5, 10)) {
             totalVal = totalVal;
-          }else if (between(temp,10,15)) {
+          } else if (between(temp, 10, 15)) {
             totalVal += 5;
-          }else if (between(temp,15,20)) {
+          } else if (between(temp, 15, 20)) {
             totalVal += 10;
-          }else if (temp>20) {
+          } else if (temp > 20) {
             totalVal += 5;
           }
 
-          if (between(wind,0,5)) {
+          if (between(wind, 0, 5)) {
             totalVal += 10;
-          }else if (between(wind,5,10)) {
+          } else if (between(wind, 5, 10)) {
             totalVal += 5;
-          }else if (between(wind,10,15)) {
+          } else if (between(wind, 10, 15)) {
             totalVal += 2;
-          }else if (between(wind,15,20)) {
+          } else if (between(wind, 15, 20)) {
             totalVal = totalVal;
-          }else if (between(wind,20,30)) {
-            totalVal = totalVal-10;
-          }else if (wind>30) {
-            totalVal = totalVal-20;
+          } else if (between(wind, 20, 30)) {
+            totalVal = totalVal - 10;
+          } else if (wind > 30) {
+            totalVal = totalVal - 20;
+          }
+
+          var deg2dir = function(wind_deg) {
+            if (wind_deg > 11.25 && wind_deg < 33.75) {
+              return "NNE";
+            } else if (wind_deg > 33.75 && wind_deg < 56.25) {
+              return "ENE";
+            } else if (wind_deg > 56.25 && wind_deg < 78.75) {
+              return "E";
+            } else if (wind_deg > 78.75 && wind_deg < 101.25) {
+              return "ESE";
+            } else if (wind_deg > 101.25 && wind_deg < 123.75) {
+              return "ESE";
+            } else if (wind_deg > 123.75 && wind_deg < 146.25) {
+              return "SE";
+            } else if (wind_deg > 146.25 && wind_deg < 168.75) {
+              return "SSE";
+            } else if (wind_deg > 168.75 && wind_deg < 191.25) {
+              return "S";
+            } else if (wind_deg > 191.25 && wind_deg < 213.75) {
+              return "SSW";
+            } else if (wind_deg > 213.75 && wind_deg < 236.25) {
+              return "SW";
+            } else if (wind_deg > 236.25 && wind_deg < 258.75) {
+              return "WSW";
+            } else if (wind_deg > 258.75 && wind_deg < 281.25) {
+              return "W";
+            } else if (wind_deg > 281.25 && wind_deg < 303.75) {
+              return "WNW";
+            } else if (wind_deg > 303.75 && wind_deg < 326.25) {
+              return "NW";
+            } else if (wind_deg > 326.25 && wind_deg < 348.75) {
+              return "NNW";
+            } else {
+              return "N";
+            }
           }
 
           arr.push({
@@ -121,7 +158,7 @@ function getWeatherData(city) {
 
           wf += "<div class='col-lg-6'>"
           wf += "<div class='card border-0 box-shadow-0'>"
-          wf += "<div class='card-content iter"+iter+"' style=''>"
+          wf += "<div class='card-content iter" + iter + "' style=''>"
           wf += "<div class='card-body bg-blue bg-lighten-4'>"
           wf += "<div class='animated-weather-icons text-center float-right w-25'>"
           wf += "<img src='https://openweathermap.org/img/w/" + val.weather[0].icon + ".png' class='weather-icon'>" // Icon
@@ -160,7 +197,7 @@ function getWeatherData(city) {
           wf += "<td>"
           wf += "<div class='details-left float-left'>"
           wf += "<span class='font-small-1 grey text-bold-600 block'>WIND DIRECTION</span>"
-          wf += "<span class='text-bold-500'>" + val.wind.deg + "</span>"
+          wf += "<span class='text-bold-500'>" + deg2dir + "</span>"
           wf += "</div>"
           wf += "<div class='float-right align-middle'>"
           wf += "<i class='me-wind grey lighten-1 font-large-1'></i>"
@@ -189,22 +226,22 @@ function getWeatherData(city) {
       $("#showWeatherForcast").html(wf);
       console.log(arr);
 
-      var max = Math.max(arr[0].totalVal,arr[1].totalVal,arr[2].totalVal,arr[3].totalVal,arr[4].totalVal)
+      var max = Math.max(arr[0].totalVal, arr[1].totalVal, arr[2].totalVal, arr[3].totalVal, arr[4].totalVal)
       console.log(max);
       for (var i = 0; i < arr.length; i++) {
-          if(max == arr[i].totalVal){
-            console.log(arr[i]);
-            card = document.querySelector('.iter'+i);
-            card.style = 'border: solid; border-color: greenyellow;border-width: 15px;'
-          }else {
-            console.log("Nope");
-          }
+        if (max == arr[i].totalVal) {
+          console.log(arr[i]);
+          card = document.querySelector('.iter' + i);
+          card.style = 'border: solid; border-color: greenyellow;border-width: 15px;'
+        } else {
+          console.log("Nope");
+        }
 
       }
     },
-    error: function (xhr, ajaxOptions, thrownError) {
-        alert("Weather api was unable to find location please select another location.");
-      }
+    error: function(xhr, ajaxOptions, thrownError) {
+      alert("Weather api was unable to find location please select another location.");
+    }
 
   });
 }
